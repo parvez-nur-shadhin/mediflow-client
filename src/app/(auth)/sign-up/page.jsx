@@ -13,9 +13,12 @@ import {
   FaUser,
 } from "react-icons/fa";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
 
   const {
     register,
@@ -26,23 +29,16 @@ const SignUp = () => {
 
   const onSubmit = async (data) => {
     const { confirmPassword, ...submitData } = data;
-    console.log("Submitting to API:", submitData);
 
     const { data: res, error } = await authClient.signUp.email({
       name: data.name,
       email: data.email, 
       password: data.password,
     });
-
-    if (res){
-      console.log("Sign-up successful:", res);
-    }
-    else {
-      throw new Error(error?.message || "Sign-up failed");
-    }
-
-    // Simulate API call
+    router.push("/");
     await new Promise((resolve) => setTimeout(resolve, 1500));
+    
+    router.refresh();
   };
 
   return (
@@ -53,7 +49,7 @@ const SignUp = () => {
         transition={{ duration: 0.4 }}
         className="card w-full max-w-md bg-base-100 shadow-xl border border-base-300"
       >
-        {/* Removed 'mx-auto w-full' here to fix alignment */}
+
         <div className="card-body">
           <div className="text-center mb-6">
             <FaHeartbeat className="text-4xl text-primary mx-auto mb-2" />
@@ -67,7 +63,7 @@ const SignUp = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
           >
-            {/* Full Name */}
+
             <div className="form-control w-full">
               <label className="label py-1">
                 <span className="label-text font-medium">Full Name</span>
@@ -119,7 +115,7 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Password */}
+   
             <div className="form-control w-full">
               <label className="label py-1">
                 <span className="label-text font-medium">Password</span>
@@ -155,7 +151,6 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Confirm Password */}
             <div className="form-control w-full">
               <label className="label py-1">
                 <span className="label-text font-medium">Confirm Password</span>
@@ -185,7 +180,6 @@ const SignUp = () => {
               )}
             </div>
 
-            {/* Submit Button */}
             <motion.div
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -210,7 +204,7 @@ const SignUp = () => {
               Already have an account?{" "}
             </span>
             <Link
-              href="/login"
+              href={"/sign-in"}
               className="text-primary font-medium hover:underline"
             >
               Sign In
