@@ -17,7 +17,6 @@ import { userAc } from "better-auth/plugins/admin/access";
 import { authClient } from "@/lib/auth-client";
 
 const AddMedicine = () => {
-  
   const { data: session } = authClient.useSession();
   const user = session?.user;
 
@@ -33,15 +32,10 @@ const AddMedicine = () => {
       ...data,
       userId: user?.id,
     };
-
-    console.log("Submitting new medicine:", newData);
-
     addMedicines(newData);
 
-    
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
-  
     reset();
   };
 
@@ -72,9 +66,7 @@ const AddMedicine = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-6"
           >
-           
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              
               <div className="form-control w-full">
                 <label className="label py-1">
                   <span className="label-text font-medium">Brand Name</span>
@@ -97,7 +89,6 @@ const AddMedicine = () => {
                 )}
               </div>
 
-              
               <div className="form-control w-full">
                 <label className="label py-1">
                   <span className="label-text font-medium">Generic Name</span>
@@ -122,7 +113,6 @@ const AddMedicine = () => {
                 )}
               </div>
 
-             
               <div className="form-control w-full">
                 <label className="label py-1">
                   <span className="label-text font-medium">Manufacturer</span>
@@ -147,7 +137,6 @@ const AddMedicine = () => {
                 )}
               </div>
 
-            
               <div className="form-control w-full">
                 <label className="label py-1">
                   <span className="label-text font-medium">Category</span>
@@ -177,7 +166,6 @@ const AddMedicine = () => {
                 )}
               </div>
 
-             
               <div className="form-control w-full">
                 <label className="label py-1">
                   <span className="label-text font-medium">Price (৳)</span>
@@ -204,7 +192,6 @@ const AddMedicine = () => {
                 )}
               </div>
 
-              
               <div className="form-control w-full">
                 <label className="label py-1">
                   <span className="label-text font-medium">Initial Stock</span>
@@ -230,7 +217,6 @@ const AddMedicine = () => {
                 )}
               </div>
 
-              
               <div className="form-control w-full">
                 <label className="label py-1">
                   <span className="label-text font-medium">Expiry Date</span>
@@ -254,7 +240,6 @@ const AddMedicine = () => {
                 )}
               </div>
 
-             
               <div className="form-control w-full">
                 <label className="label py-1">
                   <span className="label-text font-medium">
@@ -273,7 +258,6 @@ const AddMedicine = () => {
               </div>
             </div>
 
-           
             <div className="form-control w-full mt-2">
               <label className="label py-1">
                 <span className="label-text font-medium">Description</span>
